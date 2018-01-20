@@ -1,2 +1,4 @@
 # yts.js
-Javascript port from pysyuf
+Simplest Youtube video url fetcher
+
+Requires JQuery
