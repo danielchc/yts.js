@@ -34,14 +34,14 @@ function getStreams(videoID,callback){
 		crossDomain: true
 	}).done(function(data){
 		info=qsToJson(data);
-		stream_map=info.adaptive_fmts;
+		stream_map=info.adaptive_fmts.concat(info.url_encoded_fmt_stream_map);
 		streams={};
 		lis=stream_map.split(",");
 		$.each(lis,function(k1,v1){
-			curritem={}
+			curritem={};
 			infos=v1.split("&");
 			$.each(infos,function(k2,v2){
-				par=v2.split("=")
+				par=v2.split("=");
 				curritem[par[0]]=decodeURIComponent(par[1]);
 			});
 			streams[curritem['itag']]=curritem;
@@ -86,7 +86,7 @@ function getDecipherFunction(videoID,callbackF){
 					break;
 				}
 			}
-			decipher = decipherScript.split(deciphers+'={')[1]
+			decipher = decipherScript.split(deciphers+'={')[1];
 			decipher = decipher.split('}}')[0];
 			sFunc = 'var ' + deciphers + '={' + decipher + ';}}; ';
 			mFunc = 'decipherSignature=function(a){' + decipherPatterns + ';}; ';
