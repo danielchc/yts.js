@@ -1,6 +1,6 @@
 /*ytstream.js
 Version 0.1
-Last update:20/01/2018
+Last update:10/03/2018
 Author: danielchc
 */
 
@@ -62,7 +62,7 @@ function getDecipherFunction(videoID,callbackF){
             type: "GET",
             crossDomain: true
         }).done(function(decipherScript){
-			signatureCall = decipherScript.split('("signature",');
+			signatureCall = decipherScript.split('||"signature",');
 			signatureLen = Object.keys(signatureCall).length;
 			signatureFunction='';
 			for (i=signatureLen-1;i>0;i--){
